@@ -1,0 +1,36 @@
+{
+  "resourceType": "Observation",
+  "id": "ea9ba9d3-8dca-4ad0-a61b-c01bddaa4e39",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result"
+    ]
+  },
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "exam"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "252779009",
+        "display": "Single bright white flash electroretinography (procedure)"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/dcd62616-c203-4ddf-817a-4ce8622e23ca"
+  },
+  "effectivePeriod": {
+    "start": "2026-12-31T00:00:00.000+00:00",
+    "end": "2026-12-31T00:00:00.000+00:00"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.3.464.1004.2616",
+  "meta": {
+    "versionId": "5",
+    "lastUpdated": "2025-02-04T15:23:56.000-05:00",
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/shareablevalueset",
+      "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-valueset-cqfm",
+      "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-valueset-cqfm"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/valueset-effectiveDate",
+      "valueDate": "2025-01-30"
+    }
+  ],
+  "url": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1004.2616",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:oid:2.16.840.1.113883.3.464.1004.2616"
+    }
+  ],
+  "version": "20250130",
+  "name": "AutonomousEyeExamResultOrFinding",
+  "title": "Autonomous Eye Exam Result or Finding",
+  "status": "active",
+  "date": "2025-01-30T01:07:37-05:00",
+  "publisher": "NCQA PHEMUR",
+  "expansion": {
+    "identifier": "urn:uuid:00a98f55-69ee-4b64-bedf-6169ce8afe48",
+    "timestamp": "2025-05-29T17:39:09-04:00",
+    "total": 2,
+    "offset": 0,
+    "parameter": [
+      {
+        "name": "count",
+        "valueInteger": 1000
+      },
+      {
+        "name": "offset",
+        "valueInteger": 0
+      }
+    ],
+    "contains": [
+      {
+        "system": "http://loinc.org",
+        "version": "2.80",
+        "code": "LA34398-0",
+        "display": "ETDRS Level 20 or lower, without macular edema"
+      },
+      {
+        "system": "http://loinc.org",
+        "version": "2.80",
+        "code": "LA34399-8",
+        "display": "ETDRS Level 35 or higher, with or without macular edema"
+      }
+    ]
+  }
+}

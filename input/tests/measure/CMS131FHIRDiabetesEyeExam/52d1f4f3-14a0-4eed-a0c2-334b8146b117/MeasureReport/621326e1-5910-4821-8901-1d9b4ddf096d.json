@@ -1,0 +1,125 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "621326e1-5910-4821-8901-1d9b4ddf096d",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm"
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Parameters",
+      "id": "c9a22bc8-6860-4c41-ac15-9ea2bbfbeff3-parameters",
+      "parameter": [
+        {
+          "name": "subject",
+          "valueString": "52d1f4f3-14a0-4eed-a0c2-334b8146b117"
+        }
+      ]
+    }
+  ],
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-inputParameters",
+      "valueReference": {
+        "reference": "#c9a22bc8-6860-4c41-ac15-9ea2bbfbeff3-parameters"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+      "valueMarkdown": "Patient 18yo w/ an Office Visit Encounter, Diabetes Condition ending 1/1 during the MP, and Retinopathy Condition 1/1 of the year after the MP, with an Eye Exam Observation 1/1 of the year before the MP."
+    }
+  ],
+  "modifierExtension": [
+    {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+      "valueBoolean": true
+    }
+  ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/CMS131FHIRDiabetesEyeExam",
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "group": [
+    {
+      "id": "Group_1",
+      "population": [
+        {
+          "id": "InitialPopulation_1",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "count": 1
+        },
+        {
+          "id": "Denominator_1",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator",
+                "display": "Denominator"
+              }
+            ]
+          },
+          "count": 1
+        },
+        {
+          "id": "DenominatorExclusion_1",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator-exclusion",
+                "display": "Denominator Exclusion"
+              }
+            ]
+          },
+          "count": 0
+        },
+        {
+          "id": "Numerator_1",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator",
+                "display": "Numerator"
+              }
+            ]
+          },
+          "count": 0
+        }
+      ],
+      "measureScore": {
+        "value": 1
+      }
+    }
+  ],
+  "evaluatedResource": [
+    {
+      "reference": "Patient/52d1f4f3-14a0-4eed-a0c2-334b8146b117"
+    },
+    {
+      "reference": "Encounter/338adfb4-8b0e-4a73-8889-dd57617042da"
+    },
+    {
+      "reference": "Condition/ab4b7974-0a83-40a8-961b-151bf460a0eb"
+    },
+    {
+      "reference": "Condition/ab4b7974-0a83-40a8-961b-151bf460a0eb.1"
+    },
+    {
+      "reference": "Observation/97a08095-a352-4c2b-a872-d8140bb44fd7"
+    }
+  ]
+}

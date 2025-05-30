@@ -1,10 +1,10 @@
-library AdvancedIllnessandFrailty version '1.23.000'
+library AdvancedIllnessandFrailty version '1.23.001'
 
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '4.0.000' called QICoreCommon
-include CumulativeMedicationDuration version '6.0.000' called CMD
+include CumulativeMedicationDuration version '6.0.001' called CMD
 include Status version '1.13.000' called Status 
 
 codesystem "LOINC": 'http://loinc.org'
@@ -21,7 +21,7 @@ code "Housing status": '71802-3' from "LOINC" display 'Housing status'
 code "Lives in a nursing home (finding)": '160734000' from "SNOMEDCT" display 'Lives in a nursing home (finding)'
 code "Medical equipment used": '98181-1' from "LOINC" display 'Medical equipment used'
 
-parameter "Measurement Period" Interval<DateTime>
+parameter "Measurement Period" Interval<DateTime> default Interval[@2026-01-01T00:00:00, @2026-12-31T23:59:59]
 
 context Patient
 
@@ -51,8 +51,8 @@ define "Has Criteria Indicating Frailty":
         where EquipmentUsed.value as Concept in "Frailty Device" 
         and EquipmentUsed.effective.toInterval() ends during day of "Measurement Period"
     )
-    or exists ( (([ConditionProblemsHealthConcerns: "Frailty Diagnosis"])
-    union ([ConditionEncounterDiagnosis: "Frailty Diagnosis"])) FrailtyDiagnosis
+    or exists ( (([ConditionProblemsHealthConcerns: "Frailty Diagnosis"] P )
+    union ([ConditionEncounterDiagnosis: "Frailty Diagnosis"] E )) FrailtyDiagnosis
         where FrailtyDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
     or exists ( (([Encounter: "Frailty Encounter"]).isEncounterPerformed()) FrailtyEncounter
@@ -63,8 +63,8 @@ define "Has Criteria Indicating Frailty":
     )
 
 define "Has Advanced Illness in Year Before or During Measurement Period":
-exists ((([ConditionProblemsHealthConcerns: "Advanced Illness"])
-union ([ConditionEncounterDiagnosis: "Advanced Illness"])) AdvancedIllnessDiagnosis
+exists ((([ConditionProblemsHealthConcerns: "Advanced Illness"] P )
+union ([ConditionEncounterDiagnosis: "Advanced Illness"] E )) AdvancedIllnessDiagnosis
 where AdvancedIllnessDiagnosis.prevalenceInterval() starts during day of Interval[start of "Measurement Period" - 1 year, end of "Measurement Period"])
 
 define "Has Dementia Medications in Year Before or During Measurement Period":

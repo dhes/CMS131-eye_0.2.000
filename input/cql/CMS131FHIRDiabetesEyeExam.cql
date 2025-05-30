@@ -1,4 +1,4 @@
-library CMS131FHIRDiabetesEyeExam version '0.2.000'
+library CMS131FHIRDiabetesEyeExam version '0.2.001'
 
 using QICore version '6.0.0'
 
@@ -8,7 +8,7 @@ include QICoreCommon version '4.0.000' called QICoreCommon
 include Hospice version '6.15.001' called Hospice
 include Status version '1.13.000' called Status
 include PalliativeCare version '1.15.001' called PalliativeCare
-include AdvancedIllnessandFrailty version '1.23.000' called AIFrailLTCF
+include AdvancedIllnessandFrailty version '1.23.001' called AIFrailLTCF
 
 codesystem "LOINC": 'http://loinc.org'
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
@@ -32,7 +32,7 @@ code "Left eye Diabetic retinopathy severity level by Ophthalmoscopy": '71490-7'
 code "No apparent retinopathy": 'LA18643-9' from "LOINC" display 'No apparent retinopathy'
 code "Right eye Diabetic retinopathy severity level by Ophthalmoscopy": '71491-5' from "LOINC" display 'Right eye Diabetic retinopathy severity level by Ophthalmoscopy'
 
-parameter "Measurement Period" Interval<DateTime>
+parameter "Measurement Period" Interval<DateTime> default Interval[@2026-01-01T00:00:00, @2026-12-31T23:59:59]
 
 context Patient
 
@@ -83,8 +83,8 @@ define "Autonomous Eye Exam in Measurement Period":
       and AutonomousEyeExam.effective.toInterval ( ) during day of "Measurement Period"
 
 define "Bilateral Absence of Eyes":
-  exists ( ( [ConditionProblemsHealthConcerns: "Anophthalmos of bilateral eyes (disorder)"]
-      union [ConditionEncounterDiagnosis: "Anophthalmos of bilateral eyes (disorder)"] ) BilateralAbsenceEyes
+  exists ( ( [ConditionProblemsHealthConcerns: "Anophthalmos of bilateral eyes (disorder)"] P
+      union [ConditionEncounterDiagnosis: "Anophthalmos of bilateral eyes (disorder)"] E ) BilateralAbsenceEyes
       where BilateralAbsenceEyes.prevalenceInterval ( ) starts on or before day of end of "Measurement Period"
   )
 
@@ -97,8 +97,8 @@ define "Retinal Exam in Measurement Period or Year Prior":
     where RetinalExam.effective.toInterval ( ) during day of Interval[start of "Measurement Period" - 1 year, end of "Measurement Period"]
 
 define "Diabetic Retinopathy Overlapping Measurement Period":
-  exists ( ( [ConditionProblemsHealthConcerns: "Diabetic Retinopathy"]
-      union [ConditionEncounterDiagnosis: "Diabetic Retinopathy"] ) Retinopathy
+  exists ( ( [ConditionProblemsHealthConcerns: "Diabetic Retinopathy"] P
+      union [ConditionEncounterDiagnosis: "Diabetic Retinopathy"] E ) Retinopathy
       where Retinopathy.prevalenceInterval ( ) overlaps day of "Measurement Period"
   )
 
